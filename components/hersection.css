@@ -1,0 +1,41 @@
+/* Gradient Background */
+.gradient {
+    background: linear-gradient(to bottom right, #2563eb, #9333ea);
+  }
+  
+  /* Gradient Text */
+  .gradient-title {
+    background: linear-gradient(to bottom right, #2563eb, #9333ea);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    padding-right: 8px;
+    padding-bottom: 8px;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    transition: background-position 2s ease-in-out;
+    background-size: 200% 200%;
+  }
+  
+  /* Apply animated gradient shift when hovered */
+  .gradient-title:hover {
+    background-position: 100% 50%;
+  }
+  
+  /* Hero Image Wrapper */
+  .hero-image-wrapper {
+    perspective: 1000px;
+  }
+  
+  /* Initial Hero Image */
+  .hero-image {
+    transform: rotateX(15deg) scale(1);
+    transition: transform 0.5s ease-out;
+    will-change: transform;
+  }
+  
+  /* Hero Image When Scrolled */
+  .hero-image.scrolled {
+    transform: rotateX(0deg) scale(1) translateY(40px);
+  }
+  

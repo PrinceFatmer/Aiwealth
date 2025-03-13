@@ -1,101 +1,131 @@
+import HeroSection from "@/components/hero";
+import { Button } from "@/components/ui/button";
+import { featuresData, howItWorksData, statsData, testimonialsData } from "@/data/landing";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+   <div className=" mt-20">
+    <HeroSection/>
+    <section className="py-20 bg-gradient-to-r from-blue-50 to-blue-200">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-12 md:gap-16">
+            {statsData.map((stat, index) => (
+              <div
+                key={index}
+                className="text-center p-8 bg-white shadow-lg rounded-lg transition-all transform hover:scale-105 hover:shadow-2xl duration-300 ease-in-out"
+              >
+                <div className="text-6xl font-extrabold text-blue-600 mb-4 transition-all duration-300 ease-in-out">
+                  {stat.value}
+                </div>
+                <div className="text-lg font-medium text-gray-700 transition-all duration-300 ease-in-out">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </section>
+      <section
+        id="features"
+        className="py-20 bg-gradient-to-r from-blue-50 to-blue-100"
+      >
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800 transition-all duration-500 ease-in-out">
+            Everything you need to manage your finances
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuresData.map((feature, index) => (
+              <div
+                key={index}
+                className="p-6 bg-white rounded-lg shadow-xl hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:scale-105 opacity-90 hover:opacity-100"
+              >
+                <div className="flex justify-center items-center mb-4">
+                  <div className="text-4xl text-blue-600">{feature.icon}</div>
+                </div>
+                <h3 className="text-xl font-semibold text-center text-blue-700 mb-4 transition-all duration-300 ease-in-out">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 text-center transition-all duration-300 ease-in-out">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="py-20 bg-blue-50">
+  <div className="container mx-auto px-4">
+  <h2 className="text-3xl font-bold text-center mb-16">How It Works</h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      {howItWorksData.map((step, index) => (
+        <div
+          key={index}
+          className="text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-2xl transform transition-all duration-500 ease-in-out hover:scale-105 opacity-90 hover:opacity-100 cursor-pointer animate__animated animate__fadeInUp animate__delay-1s"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 ease-in-out hover:bg-blue-200 transform">
+            <div className="text-blue-600 text-3xl">{step.icon}</div>
+          </div>
+          <h3 className="text-xl font-semibold text-gray-800 mb-4 tracking-wide transition-all duration-300 ease-in-out">{step.title}</h3>
+          <p className="text-gray-600 text-lg transition-all duration-300 ease-in-out">{step.description}</p>
+        </div>
+      ))}
     </div>
+  </div>
+</section>
+<section id="testimonials" className="py-20">
+  <div className="container mx-auto px-4">
+    <h2 className="text-3xl font-bold text-center mb-16">
+      What Our Users Say
+    </h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {testimonialsData.map((testimonial, index) => (
+        <div key={index} className="p-6 bg-white rounded-lg shadow-lg hover:shadow-2xl transform transition-all duration-300 ease-in-out hover:scale-105">
+          <div className="pt-4">
+            <div className="flex items-center mb-4">
+              <Image
+                src={testimonial.image}
+                alt={testimonial.name}
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+              <div className="ml-4">
+                <div className="font-semibold">{testimonial.name}</div>
+                <div className="text-sm text-gray-600">
+                  {testimonial.role}
+                </div>
+              </div>
+            </div>
+            <p className="text-gray-600">{testimonial.quote}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<section className="py-20 bg-blue-600">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Ready to Take Control of Your Finances?
+          </h2>
+          <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+            Join thousands of users who are already managing their finances
+            smarter with Welth
+          </p>
+          <Link href="/dashboard">
+            <Button
+              size="lg"
+              className="bg-white text-blue-600 hover:bg-blue-50 animate-bounce"
+            >
+              Start Free Trial
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+
+   </div>
   );
 }
