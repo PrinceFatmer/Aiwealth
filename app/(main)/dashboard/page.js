@@ -1,21 +1,27 @@
-import { getUserAccounts } from '@/actions/dashboard'
+import { getDashboardData, getUserAccounts } from '@/actions/dashboard'
 import CreateAccountDrawer from '@/components/createAccountDrawer'
 import { Card, CardContent } from '@/components/ui/card'
 import { Plus } from 'lucide-react'
-import React from 'react'
+import React, { Suspense } from 'react'
 import AccountCard from './_components/account-card'
 import { getCurrentBudget } from '@/actions/budget'
 import BudgetProgress from './_components/budget-progress'
+import { BarLoader } from 'react-spinners'
+import { DashboardOverview } from './_components/transaction-overview'
 
 async function DashboardPage() {
-    const accounts= await getUserAccounts();
+  const [accounts, transactions] = await Promise.all([
+    getUserAccounts(),
+    getDashboardData(),
+  ]);
     const defaultAccount = accounts?.find((account) => account.isDefault);
     let budgetData= null;
     if(defaultAccount){
       budgetData= await getCurrentBudget(defaultAccount.id);
     }
+    // const transactions = await getDashboardData()
   return (
-    <div className=' px-5 mt-10'>
+    <div className=' px-5 mt-10 space-y-5 mb-10'>
       
       {/* Budget Progrrss */}
       {defaultAccount &&  <BudgetProgress
@@ -24,6 +30,12 @@ async function DashboardPage() {
       />}
 
       {/* Overview */}
+      <Suspense fallback={<BarLoader className="mt-4" width={"100%"} color="#9333ea" />}>
+      <DashboardOverview
+        accounts={accounts}
+        transactions={transactions || []}
+      />
+      </Suspense>
 
       {/* Account Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
